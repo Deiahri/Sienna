@@ -8,7 +8,7 @@
 export const site = {
   name: { first: "Sienna", last: "Zhang" },
   /** The line under her name in the hero. */
-  title: "Industrial Engineer",
+  title: "Software Engineer",
 
   /**
    * The photo beside About, a path under /public (e.g. "/sienna.jpg"), or null for the placeholder.
@@ -17,10 +17,8 @@ export const site = {
   photo: null as string | null,
 
   about: {
-    /** DRAFT: the outline's template, filled in from her current site. */
-    facts: ["University of Houston", "Industrial Engineering", "Graduating May 2029"],
     /** DRAFT: the outline's "Industrial Engineer + something personal". */
-    pairing: { work: "Industrial Engineer", personal: "Stand-up comedy" },
+    pairing: { work: "Software Engineer", personal: "Stand-up comedy" },
     /** DRAFT: the outline's template sentence. */
     paragraphs: [
       "I'm Xinning (Sienna), an industrial engineering student at the University of Houston, graduating in May 2029.",

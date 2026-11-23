@@ -4,20 +4,19 @@ import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
 /**
- * The outline's "Brief About": a photo beside school, major and graduation, what she does plus
- * something personal, and a couple of sentences. Short on purpose: the long version is the resume.
+ * The outline's "Brief About": a photo beside what she does plus something personal, and a couple
+ * of sentences. Short on purpose: the long version is the resume.
  */
 export default function About() {
-  const { facts, pairing, paragraphs } = site.about;
+  const { pairing, paragraphs } = site.about;
   return (
-    <section id="about" aria-labelledby="about-head" className="mx-auto w-full max-w-5xl scroll-mt-8 px-6 py-24 sm:px-10">
+    <section id="about" aria-labelledby="about-head" className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10">
       <Reveal>
         <SectionHead id="about-head">About</SectionHead>
         <div className="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
           <Photo />
           <div className="flex flex-col justify-center">
-            <p className="text-sm text-muted">{facts.join(" · ")}</p>
-            <p className="mt-6 text-2xl leading-snug sm:text-3xl">
+            <p className="text-2xl leading-snug sm:text-3xl">
               {pairing.work}
               <span className="serif px-3 text-sienna" aria-hidden="true">
                 +

@@ -10,7 +10,7 @@ import WorkCard from "./WorkCard";
  */
 export default function Work({ cards }: { cards: PortfolioCard[] }) {
   return (
-    <section id="work" aria-labelledby="work-head" className="mx-auto w-full max-w-5xl scroll-mt-8 px-6 py-24 sm:px-10">
+    <section id="work" aria-labelledby="work-head" className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10">
       <Reveal>
         <SectionHead id="work-head">Work</SectionHead>
       </Reveal>

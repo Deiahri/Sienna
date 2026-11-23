@@ -396,7 +396,7 @@
   .railed > [aria-hidden="true"] { display: block; }
   .railed > .rail {
     position: sticky;
-    top: 2rem;
+    top: 6.5rem; /* below the sticky nav (Nav.tsx, 4.5rem) */
     align-self: start;
     padding-top: 0.4rem;
   }

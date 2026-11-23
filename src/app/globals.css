@@ -28,6 +28,8 @@
 }
 
 html {
+  /* The sticky nav is 4.5rem tall (Nav.tsx): in-page jumps stop just below it. */
+  scroll-padding-top: 5.5rem;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);

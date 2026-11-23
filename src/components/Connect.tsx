@@ -7,7 +7,7 @@ import SectionHead from "./SectionHead";
 /** How to reach her: a line about what she's after, her address (a mailto, or copy it), her links. */
 export default function Connect() {
   return (
-    <section id="connect" aria-labelledby="connect-head" className="mx-auto w-full max-w-5xl scroll-mt-8 px-6 py-24 sm:px-10">
+    <section id="connect" aria-labelledby="connect-head" className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10">
       <Reveal>
         <SectionHead id="connect-head">Connect</SectionHead>
         <p className="max-w-prose text-lg leading-relaxed text-ink-soft">{site.connect.line}</p>
