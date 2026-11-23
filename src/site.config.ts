@@ -16,14 +16,13 @@ export const site = {
    */
   photo: null as string | null,
 
+  /**
+   * DRAFT: the About text. `**…**` is bold: the few things a skimming reader should catch.
+   * `intro` is the large sentence beside her photo; `aside` the smaller line under it.
+   */
   about: {
-    /** DRAFT: the outline's "Industrial Engineer + something personal". */
-    pairing: { work: "Software Engineer", personal: "Stand-up comedy" },
-    /** DRAFT: the outline's template sentence. */
-    paragraphs: [
-      "I'm Xinning (Sienna), an industrial engineering student at the University of Houston, graduating in May 2029.",
-      "I also do stand-up.",
-    ],
+    intro: "I'm Xinning, Sienna to most people. I'm a software engineer studying at the **University of Houston**, graduating **May 2029**.",
+    aside: "Off the clock, I do **stand-up**.",
   },
 
   /** The compact list below Work. */
@@ -50,8 +49,8 @@ export const site = {
   ],
 
   connect: {
-    /** DRAFT: from her current site's contact section. */
-    line: "I'm looking for Summer 2027 internships in industrial engineering, manufacturing operations, supply chain or data analytics.",
+    /** DRAFT: from her current site's contact section. `**…**` is bold. */
+    line: "I'm looking for **Summer 2027 internships** in industrial engineering, manufacturing operations, supply chain or data analytics.",
     /** The subject a "mailto:" link starts with. */
     mailSubject: "Hello from your portfolio",
   },

@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { site } from "@/site.config";
 import Reveal from "./Reveal";
+import Rich from "./Rich";
 import SectionHead from "./SectionHead";
 
 /**
- * The outline's "Brief About": a photo beside what she does plus something personal, and a couple
- * of sentences. Short on purpose: the long version is the resume.
+ * The outline's "Brief About": her photo beside one large sentence about her, with the few things
+ * worth catching in bold, and a lighter line under it. Short on purpose: the long version is the resume.
  */
 export default function About() {
-  const { pairing, paragraphs } = site.about;
+  const { intro, aside } = site.about;
   return (
     <section id="about" aria-labelledby="about-head" className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10">
       <Reveal>
@@ -16,19 +17,12 @@ export default function About() {
         <div className="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
           <Photo />
           <div className="flex flex-col justify-center">
-            <p className="text-2xl leading-snug sm:text-3xl">
-              {pairing.work}
-              <span className="serif px-3 text-sienna" aria-hidden="true">
-                +
-              </span>
-              <span className="sr-only">and</span>
-              {pairing.personal.toLowerCase()}
+            <p className="text-2xl leading-snug text-ink-soft sm:text-3xl sm:leading-snug">
+              <Rich text={intro} />
             </p>
-            <div className="mt-8 max-w-prose space-y-4 text-lg leading-relaxed text-ink-soft">
-              {paragraphs.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
+            <p className="mt-6 text-lg text-ink-soft">
+              <Rich text={aside} />
+            </p>
           </div>
         </div>
       </Reveal>

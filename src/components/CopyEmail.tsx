@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LuCheck, LuCopy } from "react-icons/lu";
 import useAnalytics from "./analytics/useAnalytics";
 
 /** Copies her address, for anyone whose mail isn't the browser's default handler. */
@@ -23,10 +24,11 @@ export default function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={copy}
-      className="rounded-full border border-line px-4 py-1.5 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
-      aria-live="polite"
+      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm text-muted transition-colors hover:bg-paper-deep hover:text-ink"
+      aria-label={copied ? "Copied" : `Copy ${email}`}
     >
-      {copied ? "Copied" : "Copy"}
+      {copied ? <LuCheck aria-hidden="true" className="size-3.5" /> : <LuCopy aria-hidden="true" className="size-3.5" />}
+      <span aria-live="polite">{copied ? "Copied" : "Copy"}</span>
     </button>
   );
 }

@@ -13,7 +13,7 @@ export default function Also() {
               <ul className="mt-4 space-y-3">
                 {group.items.map((item) => (
                   <li key={item.main}>
-                    <p>{item.main}</p>
+                    <p className="font-medium">{item.main}</p>
                     <p className="text-sm text-muted">{item.detail}</p>
                   </li>
                 ))}
