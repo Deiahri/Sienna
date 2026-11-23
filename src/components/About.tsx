@@ -18,9 +18,13 @@ export default function About() {
           <Photo />
           <div className="flex flex-col justify-center">
             <h3 className="text-3xl font-medium tracking-tight sm:text-4xl">{heading}</h3>
-            <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
-              <Rich text={body} />
-            </p>
+            <div className="mt-5 max-w-prose space-y-3 text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
+              {body.map((line) => (
+                <p key={line}>
+                  <Rich text={line} />
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </Reveal>
