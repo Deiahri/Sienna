@@ -1,0 +1,426 @@
+/*
+ * A project from the Brundain Writer, in this site's light look: the paper, near-black ink, the
+ * sienna accent, and section heads in the serif italic. Copied from portfolio-gael (Kleos,
+ * 2026-11-14) and re-coloured.
+ *
+ * The renderer emits `md-*` class names and `var(--md-*)` references and leaves both to its host
+ * (src/vendor/markdown-renderer/README.md, rule 2). This file is that host. Every rule hangs off
+ * `.writeup`, the class WriteupArticle puts on the renderer's <article>, so nothing here reaches
+ * the rest of the site.
+ *
+ * A plain stylesheet, not a CSS module: next.config.ts runs every `*.css` through Tailwind's loader
+ * `as: "*.css"`, which turns `x.module.css` into `x.module.css.css` and silently drops its rules.
+ */
+
+.writeup {
+  /* The tokens the renderer's charts and pins resolve at paint time. Each colour reads at 4.5:1
+     or better on the paper, #faf8f5. */
+  --md-fg: #1c1a17;
+  --md-muted: #6f6a62;
+  --md-border: #1c1a171f;
+  --md-surface: #ffffff;
+  --md-shadow: rgba(28, 26, 23, 0.14);
+  --md-color-primary: #a0522d; /* sienna, the site's one accent */
+  --md-color-secondary: #2f5d8a;
+  --md-color-accent: #6b4fa0;
+  --md-color-muted: #7a756d;
+  --md-color-success: #2e7d4f;
+  --md-color-warning: #8a6100;
+  --md-color-danger: #b23b3b;
+  --md-color-info: #1f6f7f;
+
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  color: #2f2c28;
+  font-size: 1.075rem;
+  line-height: 1.7;
+}
+
+/* Inside the article colour inherits, so a coloured span colours its children. */
+.writeup * {
+  color: inherit;
+}
+
+.writeup > :first-child { margin-top: 0; }
+.writeup > :last-child { margin-bottom: 0; }
+
+/* ---- type ---------------------------------------------------------------------------------- */
+
+.writeup h1,
+.writeup h2,
+.writeup h3 {
+  color: #1c1a17;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Section heads in the serif italic, as on the home page. */
+.writeup h2 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.writeup h1 {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  margin: 4rem 0 1.5rem;
+}
+
+.writeup h2 {
+  font-size: 2.1rem;
+  line-height: 1.25;
+  margin: 4rem 0 1.25rem;
+}
+
+.writeup h3 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.writeup h4 {
+  color: #6f6a62;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.writeup p { margin: 0 0 1.25rem; }
+.writeup strong { color: #1c1a17; font-weight: 600; }
+
+.writeup a {
+  color: var(--md-color-secondary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.writeup a:hover { color: #1d3f63; }
+
+.writeup ul,
+.writeup ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.5rem;
+}
+.writeup ul { list-style: disc; }
+.writeup ol { list-style: decimal; }
+.writeup li { margin: 0 0 0.5rem; padding-left: 0.25rem; }
+.writeup li::marker { color: var(--md-color-primary); }
+.writeup li > p { margin: 0; }
+.writeup li > ul,
+.writeup li > ol { margin: 0.5rem 0 0; }
+
+.writeup blockquote {
+  margin: 2.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--md-color-primary);
+  color: #1c1a17;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+.writeup blockquote p { margin: 0 0 0.75rem; }
+.writeup blockquote > :last-child { margin-bottom: 0; }
+
+.writeup hr {
+  border: 0;
+  border-top: 1px solid #1c1a171a;
+  margin: 4rem 0;
+}
+
+.writeup code {
+  background: #1c1a170d;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font: 0.875em ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.writeup pre {
+  background: #f2eee8;
+  border: 1px solid #1c1a171a;
+  border-radius: 0.75rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.25rem;
+  font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.writeup pre code { background: none; padding: 0; font-size: inherit; }
+
+.writeup table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 2rem 0;
+}
+.writeup th {
+  color: #6f6a62;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 0 1.25rem 0.75rem 0;
+  border-bottom: 1px solid #1c1a171f;
+}
+.writeup td {
+  padding: 0.875rem 1.25rem 0.875rem 0;
+  border-bottom: 1px solid #1c1a1712;
+  vertical-align: top;
+}
+
+/* ---- the renderer's classes ------------------------------------------------------------------ */
+
+.writeup .md-scroll { overflow-x: auto; margin: 2rem 0; }
+.writeup .md-scroll > table,
+.writeup .md-scroll > pre { margin: 0; }
+
+.writeup .md-color[data-color="primary"] { color: var(--md-color-primary); }
+.writeup .md-color[data-color="secondary"] { color: var(--md-color-secondary); }
+.writeup .md-color[data-color="accent"] { color: var(--md-color-accent); }
+.writeup .md-color[data-color="muted"] { color: var(--md-color-muted); }
+.writeup .md-color[data-color="success"] { color: var(--md-color-success); }
+.writeup .md-color[data-color="warning"] { color: var(--md-color-warning); }
+.writeup .md-color[data-color="danger"] { color: var(--md-color-danger); }
+.writeup .md-color[data-color="info"] { color: var(--md-color-info); }
+.writeup .md-color--block { border-left: 2px solid currentColor; padding-left: 1.25rem; margin: 2rem 0; }
+
+.writeup .md-image,
+.writeup .md-video,
+.writeup .md-graph {
+  margin: 2.5rem 0;
+}
+.writeup .md-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid #1c1a1714;
+}
+.writeup .md-inline-image { display: inline; max-width: 100%; height: auto; border-radius: 0.5rem; }
+.writeup .md-image figcaption,
+.writeup .md-video figcaption,
+.writeup .md-graph figcaption {
+  margin-top: 0.75rem;
+  color: #6f6a62;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.writeup .md-video__frame,
+.writeup .md-video__player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #1c1a17;
+}
+
+/* Pins on an image, as in Fatima's port of the Writer's article.css: the frame is the image's box,
+   so a pin's percentages land on the same spot at any width. Each pin is a <details> on its point;
+   the numbered dot is its <summary>, and the card opens inward from the nearest edges. */
+.writeup .md-image__frame { position: relative; }
+.writeup .md-image .md-image__pins {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+/* Kleos K6: the pins as the renderer has drawn them since Brundain Part 2d, as on Junda's and
+   Fatima's sites. A small ring at rest, its number once the picture is hovered or focused, and its
+   card on a click, a tap or Enter, beside it (data-side, data-v; data-room on a narrow screen).
+   "Hide pins" under the picture takes them all off. */
+.writeup {
+  --pin-size: 1.75rem;
+  --pin-rest: 0.75rem;
+  --pin-card-max: min(18rem, 70vw);
+}
+.writeup .md-image:has(.md-image__hide:checked) .md-image__pins { display: none; }
+.writeup .md-pin {
+  --pin: var(--pin-rest);
+  --pin-reach: calc(var(--pin) / 2 + 0.375rem);
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+}
+.writeup .md-image__frame:hover .md-pin,
+.writeup .md-image__frame:focus-within .md-pin { --pin: var(--pin-size); }
+.writeup .md-pin:hover,
+.writeup .md-pin:focus-within,
+.writeup .md-pin:has(> details[open]) { z-index: 3; }
+.writeup .md-pin__dot {
+  position: absolute;
+  left: calc(var(--pin) / -2);
+  top: calc(var(--pin) / -2);
+  width: var(--pin);
+  height: var(--pin);
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  background: var(--md-color-primary);
+  border: 2px solid #faf8f5;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgb(28 26 23 / 0.3), 0 2px 8px var(--md-shadow);
+  transition: background-color 0.15s ease, width 0.15s ease, height 0.15s ease, left 0.15s ease, top 0.15s ease;
+}
+.writeup .md-image__frame:hover .md-pin__dot,
+.writeup .md-image__frame:focus-within .md-pin__dot { color: #faf8f5; }
+.writeup .md-pin__dot::-webkit-details-marker { display: none; }
+.writeup .md-pin__dot::marker { content: ""; }
+.writeup .md-pin__dot:focus-visible { outline: 2px solid var(--md-color-primary); outline-offset: 2px; }
+.writeup .md-pin__details[open] > .md-pin__dot { background: var(--md-color-secondary); }
+.writeup .md-pin__dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; }
+.writeup .md-pin__card {
+  position: absolute;
+  width: max-content;
+  max-width: var(--pin-card-max);
+  box-sizing: border-box;
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #2f2c28;
+  background: var(--md-surface);
+  border: 1px solid var(--md-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px var(--md-shadow);
+}
+.writeup .md-pin[data-side="right"] .md-pin__card { left: var(--pin-reach); }
+.writeup .md-pin[data-side="left"] .md-pin__card { right: var(--pin-reach); }
+.writeup .md-pin[data-v="middle"] .md-pin__card { top: 0; transform: translateY(-50%); }
+.writeup .md-pin[data-v="top"] .md-pin__card { top: calc(var(--pin) / -2); }
+.writeup .md-pin[data-v="bottom"] .md-pin__card { bottom: calc(var(--pin) / -2); }
+@media (max-width: 640px) {
+  .writeup .md-pin[data-room="right"] .md-pin__card { left: var(--pin-reach); right: auto; }
+  .writeup .md-pin[data-room="left"] .md-pin__card { right: var(--pin-reach); left: auto; }
+}
+.writeup .md-pin__label { display: block; color: #1c1a17; font-weight: 600; }
+.writeup .md-pin__desc { display: block; }
+.writeup .md-pin__label + .md-pin__desc { margin-top: 0.125rem; color: #6f6a62; }
+.writeup .md-image__toggle {
+  display: table;
+  margin: 0.375rem 0 0 auto;
+  color: #7a756d;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+.writeup .md-image__toggle:hover { color: #1c1a17; }
+.writeup .md-image__toggle:has(:focus-visible) { outline: 2px solid var(--md-color-primary); outline-offset: 2px; border-radius: 0.25rem; }
+.writeup .md-image__hide { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.writeup .md-image__toggle-show,
+.writeup .md-image__hide:checked ~ .md-image__toggle-hide { display: none; }
+.writeup .md-image__hide:checked ~ .md-image__toggle-show { display: inline; }
+
+/* The artifact button, outlined like the site's other buttons. */
+.writeup .md-artifact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #1c1a1733;
+  border-radius: 999px;
+  background: transparent;
+  color: #1c1a17;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+.writeup .md-artifact:hover { background: #1c1a170a; color: #1c1a17; }
+.writeup .md-artifact__icon { color: var(--md-color-primary); }
+.writeup .md-artifact__ext { color: #6f6a62; font-size: 0.85em; }
+.writeup .md-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ECharts sizes itself once at init and needs a definite height to do it. */
+.writeup .md-graph__mount { width: 100%; aspect-ratio: 16 / 9; min-height: 220px; }
+.writeup .md-graph[data-graph-type="gauge"] .md-graph__mount { aspect-ratio: 2 / 1; }
+.writeup .md-graph[data-graph-type="pie"] .md-graph__mount,
+.writeup .md-graph[data-graph-type="donut"] .md-graph__mount { aspect-ratio: 4 / 3; }
+
+/* Development only: the renderer draws nothing for these in production. */
+.writeup .md-directive-error {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: #4a3a10;
+  color: #ffd97a;
+  font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---- Kleos K6 ------------------------------------------------------------------------------ */
+
+/* The write-up with its sections in a rail (SectionNav). Below 80rem the rail is hidden and the
+   article is as before. From 80rem: rail, article, and an empty track the rail's width, so the
+   article stays centred under its header. */
+.railed { width: 100%; }
+.railed > [aria-hidden="true"] { display: none; }
+@media (min-width: 80rem) {
+  .railed {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 46rem) 12rem;
+    justify-content: center;
+    column-gap: 2rem;
+  }
+  .railed > [aria-hidden="true"] { display: block; }
+  .railed > .rail {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    padding-top: 0.4rem;
+  }
+}
+
+/* A click on a picture opens it full size (ImageZoom). */
+.writeup .md-image img { cursor: zoom-in; }
+.writeup .md-image img:focus-visible { outline: 2px solid var(--md-color-primary); outline-offset: 3px; }
+
+/* A cropped picture (`crop` on ::image, Brundain Part 5g). The renderer sizes the frame to the kept
+   part and places the picture inside it; the frame takes the rounding and, as a layer over it, the
+   hairline, since the clipped picture's own edge is out of view. */
+.writeup .md-image--cropped .md-image__frame { border-radius: 0.75rem; }
+.writeup .md-image--cropped .md-image__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #1c1a1714;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.writeup .md-image--cropped img {
+  max-height: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}

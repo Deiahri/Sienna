@@ -1,0 +1,51 @@
+/* A write-up's sections in the rail beside it (SectionNav.tsx). Only where the rail is its own
+   sticky column: 80rem and up, where the article keeps its 46rem (WriteupArticle.css). */
+.section-nav {
+  display: none;
+}
+@media (min-width: 80rem) {
+  .section-nav {
+    display: block;
+  }
+}
+.section-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid #1c1a171f;
+}
+.section-nav__link {
+  display: block;
+  margin-left: -1px;
+  padding: 0.25rem 0 0.25rem 0.75rem;
+  border-left: 2px solid transparent;
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #7a756d;
+  text-decoration: none;
+  text-wrap: pretty;
+  transition: color 150ms ease-out, border-color 150ms ease-out;
+}
+.section-nav__link:hover {
+  color: #1c1a17;
+}
+.section-nav__link[aria-current="location"] {
+  color: #1c1a17;
+  border-left-color: #a0522d;
+}
+.section-nav__link:focus-visible {
+  outline: 2px solid #a0522d;
+  outline-offset: 2px;
+}
+.section-nav__label {
+  margin: 0 0 0.75rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7a756d;
+}

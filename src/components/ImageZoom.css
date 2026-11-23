@@ -1,0 +1,69 @@
+/* A picture at full size (ImageZoom.tsx). The dialog fills the screen and is its own backdrop, so a
+   click anywhere around the picture closes it. Ported from Junda's site, via Gael's, in this site's light look. */
+.image-zoom {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 1rem;
+  border: 0;
+  background: rgb(250 248 245 / 0.97);
+  box-sizing: border-box;
+  cursor: zoom-out;
+}
+.image-zoom[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-zoom::backdrop {
+  background: transparent;
+}
+.image-zoom__figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: default;
+}
+.image-zoom__image {
+  display: block;
+  max-width: min(100%, 1600px);
+  max-height: calc(100dvh - 6rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  background: #f2eee8;
+}
+.image-zoom__caption {
+  font-size: 0.8rem;
+  color: #6f6a62;
+  text-align: center;
+  max-width: 70ch;
+}
+.image-zoom__close {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #1c1a17;
+  background: rgb(28 26 23 / 0.08);
+  cursor: pointer;
+}
+.image-zoom__close:hover {
+  background: rgb(28 26 23 / 0.16);
+}
+.image-zoom__close:focus-visible {
+  outline: 2px solid #a0522d;
+  outline-offset: 2px;
+}
