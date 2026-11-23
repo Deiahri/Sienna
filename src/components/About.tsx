@@ -5,11 +5,11 @@ import Rich from "./Rich";
 import SectionHead from "./SectionHead";
 
 /**
- * The outline's "Brief About": her photo beside one large sentence about her, with the few things
- * worth catching in bold, and a lighter line under it. Short on purpose: the long version is the resume.
+ * The outline's "Brief About": her photo beside who she is, large, then a couple of sentences with
+ * the few things worth catching in bold. Short on purpose: the long version is the resume.
  */
 export default function About() {
-  const { intro, aside } = site.about;
+  const { heading, body } = site.about;
   return (
     <section id="about" aria-labelledby="about-head" className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10">
       <Reveal>
@@ -17,11 +17,9 @@ export default function About() {
         <div className="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
           <Photo />
           <div className="flex flex-col justify-center">
-            <p className="text-2xl leading-snug text-ink-soft sm:text-3xl sm:leading-snug">
-              <Rich text={intro} />
-            </p>
-            <p className="mt-6 text-lg text-ink-soft">
-              <Rich text={aside} />
+            <h3 className="text-3xl font-medium tracking-tight sm:text-4xl">{heading}</h3>
+            <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed">
+              <Rich text={body} />
             </p>
           </div>
         </div>

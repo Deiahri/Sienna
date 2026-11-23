@@ -17,12 +17,12 @@ export const site = {
   photo: null as string | null,
 
   /**
-   * DRAFT: the About text. `**…**` is bold: the few things a skimming reader should catch.
-   * `intro` is the large sentence beside her photo; `aside` the smaller line under it.
+   * DRAFT: the About text beside her photo: a large heading, then the body. In the body, `**…**`
+   * is bold: the few things a skimming reader should catch.
    */
   about: {
-    intro: "I'm Xinning, Sienna to most people. I'm a software engineer studying at the **University of Houston**, graduating **May 2029**.",
-    aside: "Off the clock, I do **stand-up**.",
+    heading: "I'm Xinning (Sienna)",
+    body: "I'm a software engineer studying at the **University of Houston**, graduating **May 2029**. Off the clock, I do **stand-up**.",
   },
 
   /** The compact list below Work. */
