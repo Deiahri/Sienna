@@ -19,16 +19,10 @@ import type { PortfolioCard, PortfolioKind, PortfolioWriteup } from "./types";
 const WRITER_API_URL = (process.env.WRITER_API_URL || "http://localhost:8787").replace(/\/$/, "");
 
 /**
- * Whose docs these are: the Clerk user id of Sienna's Writer account.
- * TODO: she has no Writer account yet. "local" is the owner of a local Writer with no sign-in
- * (`npm run dev:sienna` in the Writer). Once she has one, put her id here, or set WRITER_OWNER_ID.
+ * Whose docs these are: the Clerk user id of Sienna's Writer account. `npm run dev:sienna` in the
+ * Writer runs a local Writer as this same id, so locally there's nothing to set either.
  */
-const WRITER_OWNER_ID = process.env.WRITER_OWNER_ID || "local";
-
-/** "local" in production lists nobody's docs, quietly: an empty list is a 200. Say so once. */
-if (!process.env.WRITER_OWNER_ID && process.env.NODE_ENV === "production") {
-  console.warn('[writer] WRITER_OWNER_ID is not set, so the site asks for owner "local" and will list nothing from a deployed Writer.');
-}
+const WRITER_OWNER_ID = process.env.WRITER_OWNER_ID || "user_3MXcML9A45c4N9TADGBO5wKcET5";
 
 /** Unset in production is a deploy mistake, not an outage: say so beside the failure. */
 const MISSING_URL_HINT =

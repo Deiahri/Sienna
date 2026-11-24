@@ -37,7 +37,7 @@ vendored renderer, `WriteupArticle`, `SectionNav`, `ImageZoom` and `components/a
 
 ```bash
 npm install
-npm run dev -- -p 3003   # reads the Writer at WRITER_API_URL (default http://localhost:8787) as WRITER_OWNER_ID (default "local")
+npm run dev -- -p 3003   # reads the Writer at WRITER_API_URL (default http://localhost:8787) as WRITER_OWNER_ID (default: Sienna's id)
 npm run build && npm start
 npm run lint
 ```
@@ -46,7 +46,7 @@ For a Writer to read, run it from the Kleos repo, seeded with her five old proje
 
 ```bash
 cd "../../2026-11-14 - Project Kleos External Testing/SOT Writer Workspace"
-npm run dev:sienna            # the Writer as "local", on data/sienna (seeded the first time; -- --reset to reseed)
+npm run dev:sienna            # the Writer as Sienna, on data/sienna (seeded the first time; -- --reset to reseed)
 npm run probe:sienna          # browser checks of this site against a throwaway Writer (27 checks)
 ```
 
@@ -62,8 +62,9 @@ Everything about Sienna (name, title, About text, the Also list, email, links, r
 - [ ] **Personal email:** set `personalEmail`. Until then the site uses her cougarnet address.
 - [ ] **Resume:** set `resumeUrl` to a hosted PDF (e.g. a Google Drive share link). Until then
       it shows "Resume (soon)" with nothing to click.
-- [ ] **Writer account:** once she has one, set `WRITER_OWNER_ID` (or the default in
-      `src/lib/writer.ts`) to her Clerk user id.
+- [ ] **Her Project category:** in the Writer, she makes a category named exactly **Project**
+      (its slug is then `project`, what this site asks for). A new account starts with no
+      categories, so until then nothing she writes can show here.
 
 ## Deploying (Vercel)
 
@@ -73,7 +74,7 @@ Everything about Sienna (name, title, About text, the Also list, email, links, r
 | Variable | Value |
 |---|---|
 | `WRITER_API_URL` | The Writer's Railway URL, no trailing slash. |
-| `WRITER_OWNER_ID` | Her Clerk user id. **Required in production**: unset, the site asks for `local` and lists nothing. |
+| `WRITER_OWNER_ID` | Optional. Sienna's Clerk user id is the default. |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Optional. Without them there's no consent banner and no tracking. Inlined at build. |
 | `SITE_URL` | Optional, for a custom domain. Otherwise Vercel's production domain is used. |
 
