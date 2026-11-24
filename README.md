@@ -62,9 +62,9 @@ Everything about Sienna (name, title, About text, the Also list, email, links, r
 - [ ] **Personal email:** set `personalEmail`. Until then the site uses her cougarnet address.
 - [ ] **Resume:** set `resumeUrl` to a hosted PDF (e.g. a Google Drive share link). Until then
       it shows "Resume (soon)" with nothing to click.
-- [ ] **Her Project category:** in the Writer, she makes a category named exactly **Project**
-      (its slug is then `project`, what this site asks for). A new account starts with no
-      categories, so until then nothing she writes can show here.
+- [x] **Her Project category:** made in her Writer account on 2026-11-24 (slug `project`, what this
+      site asks for), with one unpublished "Project template" doc (lorem ipsum) under it. She
+      writes a project there, or a new doc filed under Project, and publishes it to show it here.
 
 ## Deploying (Vercel)
 
